@@ -3,20 +3,18 @@ cislostring = str(cislo)
 
 
 
+prvni_cifra = 9
+
 number = 0
-
-nejvetsi_cifra = 9
-
-
 
 
 for x in cislostring:
-    while x != nejvetsi_cifra:
-        nejvetsi_cifra -= 1
+    number = int(x)
+    while number != prvni_cifra:
+        prvni_cifra -= 1
 
-    break
+    
 
 
-print(nejvetsi_cifra)
-
+print(prvni_cifra)
 
