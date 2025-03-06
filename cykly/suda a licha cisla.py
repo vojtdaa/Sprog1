@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 prepinacka = 0
 mez = int(input("napiš MEZ: "))
 
