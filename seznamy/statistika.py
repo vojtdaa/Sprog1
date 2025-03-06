@@ -16,4 +16,5 @@ for i in e:
     sum_number += i
     
 average = sum_number/count
-print(max_number, min_number, int(average))
+
+print(f"Nejvetsi cislo = {max_number};", f"Nejvesti cislo = {min_number};", f"Prumer = {int(average)}")
