@@ -1,20 +1,17 @@
 def NejdelsiSlovo(text):
-    nejdelsi_slovo = ""
-    number = 0
-    max_number = 0
-    seznam_slov = []
-    for i in text:
-        if i != "":
-            nejdelsi_slovo += i
+    slova = text.split()
+    print (slova)
+    
 
-        else:
-            seznam_slov.append(nejdelsi_slovo)
-            nejdelsi_slovo = ""
-    return seznam_slov
+NejdelsiSlovo("fg jkgkdj   ff f       f 55 5f5 555")
 
 
+def NejdelsiSlovo_2(text):
+    slova = text.split()
 
+    if not slova:
+        return ""
+    
+    return max(slova, key=len)
 
-
-
-print(NejdelsiSlovo("tect dhfh klfkdkf kdfk kdfk dkkfkfk")) 
+print(NejdelsiSlovo_2("sdn fdf kkkk d kd kdkfkk d "))

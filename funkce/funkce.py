@@ -1,7 +1,7 @@
 seznam = []
 
 def SudaFunkce(zacatek, konec):
-    for i in range(zacatek, konec+1):
+    for i in range(zacatek, konec+2):
         if i%2 == 0:
             seznam.append(i)
     return seznam       
@@ -9,7 +9,7 @@ def SudaFunkce(zacatek, konec):
             
            
 
-vysledek = SudaFunkce(2, 11)
+vysledek = SudaFunkce(2, 12)
 
 for x in range(len(seznam)):
     print(vysledek[x])
