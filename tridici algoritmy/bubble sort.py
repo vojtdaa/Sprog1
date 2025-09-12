@@ -70,7 +70,7 @@ def BubbleSort3(n):
 def measure_sorts():
     unsorted_list = []
     for x in range(10000):
-        unsorted_list.append(random.randint(0, 1000000000000))
+        unsorted_list.append(random.randint(0, 10000))
 
     list_copy = copy.deepcopy(unsorted_list)
 
