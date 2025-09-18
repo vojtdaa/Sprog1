@@ -66,6 +66,54 @@ def BubbleSort3(n):
                 n[x+1] = temp
     return step
 
+rada = [5, 1, 2, 3, 9, 6, 4, ]
+
+def BubbleSort4(n):
+    step = 0
+    change = True
+    end = len(n) - 1
+    start = 0
+    zarazka = 0
+
+    for i in range(len(n)):
+        change = False
+
+        for x in range(start, end-1):
+
+            if x == end-1:
+                if n[x] <= n[x+1]:
+                    end -= 1
+                    break
+            
+            step += 1
+            if n[x] > n[x+1]:
+                change  = True
+                temp = n[x]
+                n[x] = n[x+1]
+                n[x+1] = temp
+
+
+        if change == False:
+            break
+
+        for x in range(end, start, -1):
+            if x == start:
+                if n[x] == n[x-1]:
+                    start += 1
+                    break
+
+            if n[x] < n[x-1]:
+                temp = n[x]
+                n[x] = n[x-1]
+                n[x-1] = temp
+            
+            
+
+                    
+    return step, n
+
+
+
 
 def measure_sorts():
     unsorted_list = []
@@ -104,4 +152,6 @@ def measure_sorts():
 
     print(f"Bubble v3 - pocet porovnani: {comparisons}, cas: {execution_time}")
 
-measure_sorts()
+#measure_sorts()
+
+BubbleSort4(rada)
