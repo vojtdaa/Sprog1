@@ -1,145 +1,102 @@
 import copy
 import random
 import time
+#import matplotlib.pyplot as plt
 
-cisla = [5, 1, 4, 8, 2, 3]
+from bubble_v1 import BubbleSort1
+from bubble_v2 import BubbleSort2
+from bubble_v3 import BubbleSort3
+from bubble_v4 import BubbleSort4
+from insertion_sort import InsertionSort
 
-print("measuring performance...")
-
-def BubbleSort1(n):
-    step = 0
-
-    for i in range(len(n)):
-
-        for x in range(len(n) - 1):
-            step += 1
-
-            if n[x] > n[x+1]:
-                temp = n[x]
-                n[x] = n[x+1]
-                n[x+1] = temp
-    return step
-
-def BubbleSort2(n):
-    step = 0
-    change = True
-
-    for i in range(len(n)):
-        if change == False:
-            return step
-
-        change = False
-
-        for x in range(len(n) - 1):
-            step += 1
-
-            if n[x] > n[x+1]:
-                change  = True
-                temp = n[x]
-                n[x] = n[x+1]
-                n[x+1] = temp
-    return step
-
-def BubbleSort3(n):
-    step = 0
-    change = True
-    end = len(n) - 1
-
-    for i in range(len(n)):
-        if change == False:
-            return step
-
-        change = False
-
-        for x in range(end):
-
-            if x == end-1:
-                if n[x] <= n[x+1]:
-                    end -= 1
-                    break
-            
-            step += 1
-            if n[x] > n[x+1]:
-                change  = True
-                temp = n[x]
-                n[x] = n[x+1]
-                n[x+1] = temp
-    return step
-
-rada = [5, 1, 2, 3, 9, 6, 4, ]
-
-def BubbleSort4(n):
-    change = True
-    end = len(n) -1
-    start = 0
-    step = 1
-
-    while change and start < end:
-        for i in range(start, end):
-            step +=1
-            if(n[i] > n[i+1]):
-                n[i], n[i+1] = n[i+1], n[i]
-                change = True
-        if not change:
-            break
-        end -= 1
-
-        for i in range(end, start, -1):
-            if(n[i] < n[i-1]):
-                n[i], n[i-1] = n[i-1], n[i]
-        start += 1
-    
-    return step
-
-
-
+lists_lens = [n for n in range(10, 50, 10)]
 
 def measure_sorts():
+    print("measuring performance...")
+    for kolikrat in range(50, 250, 50):
+        unsorted_list = [random.randint(0, 5*kolikrat) for _ in range(kolikrat)]
+
+        list_copy = copy.deepcopy(unsorted_list)
+
+        time_start = time.perf_counter()
+        comparisons = BubbleSort1(list_copy)
+        time_end = time.perf_counter()
+
+        execution_time = time_end - time_start
+
+        print(f"Bubble v1 - pocet porovnani: {comparisons}, cas: {execution_time}")
+
+        list_copy = copy.deepcopy(unsorted_list)
+
+        time_start = time.perf_counter()
+        comparisons = BubbleSort2(list_copy)
+        time_end = time.perf_counter()
+
+        execution_time = time_end - time_start
+
+
+        print(f"Bubble v2 - pocet porovnani: {comparisons}, cas: {execution_time}")
+
+        list_copy = copy.deepcopy(unsorted_list)
+
+        time_start = time.perf_counter()
+        comparisons = BubbleSort3(list_copy)
+        time_end = time.perf_counter()
+
+        execution_time = time_end - time_start
+
+
+        print(f"Bubble v3 - pocet porovnani: {comparisons}, cas: {execution_time}")
+
+        list_copy = copy.deepcopy(unsorted_list)
+
+        time_start = time.perf_counter()
+        comparisons = BubbleSort4(list_copy)
+        time_end = time.perf_counter()
+
+        execution_time = time_end - time_start
+
+        print(f"Bubble v4 - pocet porovnani: {comparisons}, cas: {execution_time}")
+        print("---------------------------------------")
+
+
+
+#measure_sorts()
+Bubble1_results = []
+Bubble2_results = []
+Bubble3_results = []
+Bubble4_results = []
+Insertion_results = []
+
+def MakeChart():
+    for value in range(10, 50, 10):
+        nahodny_seznam = [random.randint(0, 5*value) for _ in range(value)]
+
+        Bubble1_results.append(BubbleSort1(copy.deepcopy(nahodny_seznam)))
+        Bubble2_results.append(BubbleSort2(copy.deepcopy(nahodny_seznam)))
+        Bubble3_results.append(BubbleSort3(copy.deepcopy(nahodny_seznam)))
+        Bubble4_results.append(BubbleSort4(copy.deepcopy(nahodny_seznam)))
+
     
-    unsorted_list = [random.randint(0, 10000) for _ in range(1000)]
+MakeChart()
 
-    list_copy = copy.deepcopy(unsorted_list)
-
-    time_start = time.perf_counter()
-    comparisons = BubbleSort1(list_copy)
-    time_end = time.perf_counter()
-
-    execution_time = time_end - time_start
-
-    print(f"Bubble v1 - pocet porovnani: {comparisons}, cas: {execution_time}")
-
-    list_copy = copy.deepcopy(unsorted_list)
-
-    time_start = time.perf_counter()
-    comparisons = BubbleSort2(list_copy)
-    time_end = time.perf_counter()
-
-    execution_time = time_end - time_start
+def Vysledek():
+    print("velikost |  50  |  100  |  150  |  200  |")
+    print(f"bubble v1| {Bubble1_results}")
+    print(f"bubble v2| {Bubble2_results}")
+    print(f"bubble v3| {Bubble3_results}")
+    print(f"bubble v4| {Bubble4_results}")
 
 
-    print(f"Bubble v2 - pocet porovnani: {comparisons}, cas: {execution_time}")
+def GenerateChart():
 
-    list_copy = copy.deepcopy(unsorted_list)
+    plt.plot(lists_lens, Bubble1_results, label="bubbleV1", color="blue")
+    plt.plot(lists_lens, Bubble2_results, label="bubbleV2", color="blue")
+    plt.plot(lists_lens, Bubble3_results, label="bubbleV3", color="blue")
+    plt.plot(lists_lens, Bubble4_results, label="bubbleV4", color="blue")
 
-    time_start = time.perf_counter()
-    comparisons = BubbleSort3(list_copy)
-    time_end = time.perf_counter()
-
-    execution_time = time_end - time_start
-
-
-    print(f"Bubble v3 - pocet porovnani: {comparisons}, cas: {execution_time}")
-
-    list_copy = copy.deepcopy(unsorted_list)
-
-    time_start = time.perf_counter()
-    comparisons = BubbleSort4(list_copy)
-    time_end = time.perf_counter()
-
-    execution_time = time_end - time_start
-
-    print(f"Bubble v4 - pocet porovnani: {comparisons}, cas: {execution_time}")
+Vysledek()
 
 
 
-measure_sorts()
+
