@@ -11,7 +11,7 @@ from selection_sort import SelectionSort
 from insertion_sort import InsertionSort
 from selection_sort_v2 import SelectionSort2
 
-lists_lens = [n for n in range(10, 100, 5)]
+lists_lens = [n for n in range(10, 1000, 50)]
 
 def measure_sorts():
     print("measuring performance...")
@@ -73,7 +73,7 @@ Selection_results = []
 Selection2_results = []
 
 def MakeChart():
-    for value in range(10, 100, 5):
+    for value in range(10, 1000, 50):
         nahodny_seznam = [random.randint(0, 5*value) for _ in range(value)]
 
         Bubble1_results.append(BubbleSort1(copy.deepcopy(nahodny_seznam)))
