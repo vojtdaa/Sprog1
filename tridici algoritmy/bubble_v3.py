@@ -1,11 +1,11 @@
 def BubbleSort3(n):
-    step = 0
+    steps = 0
     change = True
     end = len(n) - 1
 
     for i in range(len(n)):
         if change == False:
-            return step
+            return steps
 
         change = False
 
@@ -16,10 +16,10 @@ def BubbleSort3(n):
                     end -= 1
                     break
             
-            step += 1
+            steps += 1
             if n[x] > n[x+1]:
                 change  = True
                 temp = n[x]
                 n[x] = n[x+1]
                 n[x+1] = temp
-    return step
+    return steps

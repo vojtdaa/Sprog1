@@ -2,11 +2,11 @@ def BubbleSort4(n):
     change = True
     end = len(n) -1
     start = 0
-    step = 1
+    steps = 0
 
     while change and start < end:
         for i in range(start, end):
-            step +=1
+            steps +=1
             if(n[i] > n[i+1]):
                 n[i], n[i+1] = n[i+1], n[i]
                 change = True
@@ -19,4 +19,4 @@ def BubbleSort4(n):
                 n[i], n[i-1] = n[i-1], n[i]
         start += 1
     
-    return step
+    return steps

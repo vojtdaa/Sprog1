@@ -13,4 +13,3 @@ def InsertionSort(n):
             else: break
     return steps
 
-print(InsertionSort(copy.deepcopy(seznam)))
