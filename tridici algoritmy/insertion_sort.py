@@ -5,10 +5,11 @@ seznam = [22, 5, 61, 7, 3, 44, 8, 9]
 def InsertionSort(n):
     steps = 0
     for i in range(1, len(n)):
-        for z in range(i):
+        a = 0
+        while a<i and n[i-a] < n[i-1-a]:
             steps += 1
-            if n[i-z] < n[i-1-z]:
-                n[i-z], n[i-1-z] = n[i-1-z], n[i-z]
-                #print(n)
-            else: break
+            n[i-a], n[i-1-a] = n[i-1-a], n[i-a]
+            a += 1
     return steps
+
+print(InsertionSort(seznam))

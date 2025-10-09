@@ -14,7 +14,7 @@ from shell_sort import ShellSort
 lists_lens = [n for n in range(10, 100, 10)] #idealni porovnani je pri 10, 100, 10
 
 
-#measure_sorts()
+
 Bubble1_results = []
 Bubble2_results = []
 Bubble3_results = []
