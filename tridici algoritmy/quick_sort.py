@@ -25,5 +25,3 @@ def QuickSort(n):
 
     return QuickSort(left) + [pivot] + QuickSort(right)
 
-print(QuickSort(seznam))
-print(steps)

@@ -9,10 +9,9 @@ from bubble_v3 import BubbleSort3
 from bubble_v4 import BubbleSort4
 from selection_sort import SelectionSort
 from insertion_sort import InsertionSort
-from selection_sort_v2 import SelectionSort2
 from shell_sort import ShellSort
 
-lists_lens = [n for n in range(10, 1000, 50)]
+lists_lens = [n for n in range(10, 100, 10)] #idealni porovnani je pri 10, 100, 10
 
 
 #measure_sorts()
@@ -22,11 +21,10 @@ Bubble3_results = []
 Bubble4_results = []
 Insertion_results = []
 Selection_results = []
-Selection2_results = []
 ShellSort_results = []
 
 def MakeChart():
-    for value in range(10, 1000, 50):
+    for value in range(10, 100, 10):
         nahodny_seznam = [random.randint(0, 5*value) for _ in range(value)]
 
         Bubble1_results.append(BubbleSort1(copy.deepcopy(nahodny_seznam)))
@@ -35,7 +33,6 @@ def MakeChart():
         Bubble4_results.append(BubbleSort4(copy.deepcopy(nahodny_seznam)))
         Insertion_results.append(InsertionSort(copy.deepcopy(nahodny_seznam)))
         Selection_results.append(SelectionSort(copy.deepcopy(nahodny_seznam)))
-        Selection2_results.append(SelectionSort2(copy.deepcopy(nahodny_seznam)))
         ShellSort_results.append(ShellSort(copy.deepcopy(nahodny_seznam)))
 
     
@@ -49,7 +46,6 @@ def Vysledek():
     print(f"bubble v4| {Bubble4_results}")
     print(f"insertion| {Insertion_results}")
     print(f"selection| {Selection_results}")
-    print(f"selection v2| {Selection2_results}")
     print(f"shell sort| {ShellSort_results}")
 
 
@@ -61,7 +57,6 @@ def GenerateChart():
     plt.plot(lists_lens, Bubble4_results, label="bubbleV4", color="#1200AF")
     plt.plot(lists_lens, Insertion_results, label="insertion", color="#A32098")
     plt.plot(lists_lens, Selection_results, label="selection", color="#00CFF3")
-    plt.plot(lists_lens, Selection2_results, label="selectionV2", color="#00778B")
     plt.plot(lists_lens, ShellSort_results, label="shell", color="#000000")
 
     plt.legend()

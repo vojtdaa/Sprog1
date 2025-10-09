@@ -12,4 +12,3 @@ def InsertionSort(n):
                 #print(n)
             else: break
     return steps
-print(InsertionSort(seznam))
