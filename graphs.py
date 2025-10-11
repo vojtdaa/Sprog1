@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from math import sin, pi, sqrt
+from math import sin, pi
 
 # parametry
 start = -2 * pi
