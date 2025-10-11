@@ -1,4 +1,4 @@
-seznam = [2, 5, 6, 8, 7, 4, 3, 6, 2]
+seznam = [2, 5, 6, 8, 7, 4, 3, 6, 2, 1, 7]
 
 def ShellSort(n):
     steps = 0
@@ -13,3 +13,5 @@ def ShellSort(n):
                     a+=1   
         gap //= 2
     return steps
+
+print(ShellSort(seznam))
