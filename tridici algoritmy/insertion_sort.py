@@ -11,5 +11,3 @@ def InsertionSort(n):
             n[i-a], n[i-1-a] = n[i-1-a], n[i-a]
             a += 1
     return steps
-
-print(InsertionSort(seznam))

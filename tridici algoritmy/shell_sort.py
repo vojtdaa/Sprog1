@@ -14,4 +14,3 @@ def ShellSort(n):
         gap //= 2
     return steps
 
-print(ShellSort(seznam))
