@@ -1,6 +1,5 @@
 import copy
 import random
-import time
 import matplotlib.pyplot as plt
 
 from bubble_v1 import BubbleSort1
