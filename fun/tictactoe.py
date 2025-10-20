@@ -27,31 +27,50 @@ def Play():
     vysledek = 0
     play = 0
     while game_running:
-        play = int(input("Hrac x: Zadej cislo 1-9: "))
-        if play in all_points:
-            x_points.append(play)
-            all_points.remove(play)
+        play = input("Hrac x: Zadej cislo 1-9: ")
+        if not play.isdigit(): 
+            play = 0
+
+        if int(play) in all_points:
+            x_points.append(int(play))
+            all_points.remove(int(play))
         else: print("Invalid move.")
 
         Display()
+
+        if all_points == []:
+            vysledek == 0
+            return vysledek
+        
         vysledek = Check()
+
         if vysledek == 1:
             return vysledek
         if vysledek == 2:
             return vysledek
 
-        play = int(input("Hrac o: Zadej cislo 1-9: "))
-        if play in all_points:
-            o_points.append(play)
-            all_points.remove(play)
+        play = input("Hrac o: Zadej cislo 1-9: ")
+        if not play.isdigit(): 
+            play = 0
+        if int(play) in all_points:
+            o_points.append(int(play))
+            all_points.remove(int(play))
         else: print("Invalid move.")
 
         Display()
+
+        if all_points == []:
+            vysledek == 0
+            return vysledek
+                
         vysledek = Check()
+
         if vysledek == 1:
             return vysledek
         if vysledek == 2:
             return vysledek
+        
+    return vysledek
 
         
 
@@ -69,4 +88,9 @@ def Display():
 print("hraci pole:")
 print("1 2 3\n4 5 6\n7 8 9")
 game_result = Play()
-print(f"The winner is Player {game_result}")
+
+if game_result == 1:
+    print("Player 1 (x) won!")
+elif game_result == 2:
+    print("Player 2 (o) won!")
+else: print("It's a draw!")
