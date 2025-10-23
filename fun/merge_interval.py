@@ -1,6 +1,6 @@
-seznam = [[1,3], [2,5], [10,12], [11,15]]
+seznam = [(1,3), (2,5), (10,12), (11,15)]
 
-new = [2]
+new = []
 stop = False
 complete = False
 print(new)
