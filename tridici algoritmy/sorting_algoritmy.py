@@ -11,7 +11,7 @@ from insertion_sort import InsertionSort
 from shell_sort import ShellSort
 from quick_sort_home import Quick_sort_counter, Partition
 
-lists_lens = [n for n in range(1, 20, 2)] #idealni porovnani je pri 10, 100, 10
+lists_lens = [n for n in range(10, 200, 20)] #idealni porovnani je pri 10, 100, 10
 
 
 
@@ -25,7 +25,7 @@ ShellSort_results = []
 QuickSort_results = []
 
 def MakeChart():
-    for value in range(1, 20, 2):
+    for value in range(10, 200, 20):
         nahodny_seznam = [random.randint(0, 5*value) for _ in range(value)]
 
         Bubble1_results.append(BubbleSort1(copy.deepcopy(nahodny_seznam)))
