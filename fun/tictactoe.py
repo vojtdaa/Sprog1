@@ -27,7 +27,7 @@ def Play():
     vysledek = 0
     play = 0
     while game_running:
-        play = input("Hrac x: Zadej cislo 1-9: ")
+        play = input("Hrac 1 (x): Zadej cislo 1-9: ")
         if not play.isdigit(): 
             play = 0
 
@@ -49,7 +49,7 @@ def Play():
         if vysledek == 2:
             return vysledek
 
-        play = input("Hrac o: Zadej cislo 1-9: ")
+        play = input("Hrac 2 (o): Zadej cislo 1-9: ")
         if not play.isdigit(): 
             play = 0
         if int(play) in all_points:

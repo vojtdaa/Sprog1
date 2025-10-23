@@ -6,8 +6,6 @@ steps = 0
 
 def QuickSort(n):
     global steps
-    steps +=1
-
     if len(n) <= 1:
         return n
     pivot = n[-1]
@@ -23,5 +21,8 @@ def QuickSort(n):
     left = n[0:j+1]
     right = n[j+1:-1]
 
+    steps += 1
+
     return QuickSort(left) + [pivot] + QuickSort(right)
 
+print(QuickSort(seznam), steps)
