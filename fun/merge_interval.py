@@ -3,18 +3,20 @@ seznam = [(1,3), (2,5), (10,12), (11,15)]
 new = []
 stop = False
 complete = False
-print(new)
-while not stop:
-    i = 0
-    j = 0
-    a = seznam[i][j]
-    while a != seznam[i][j+1]:
-        a = seznam[i][j]
-        new.append(a)
-        a += 1
-        if a>10: break
-    break
 
-     
+def MakeNew():
+    for z in range(len(seznam)-1):
+        Rozepis_interval(z, seznam, new)  
+    return
+
+def Rozepis_interval(start, seznam, new):
+    a = seznam[start][0]
+    while a <= seznam[start][1]:
+        if a not in new:
+            new.append(a)
+            a += 1
+    return new 
+   
+MakeNew()
 
 print(new)
