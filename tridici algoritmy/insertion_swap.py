@@ -11,5 +11,5 @@ def FindSmaller(n):
 
     return n
 
-print(FindSmaller(seznam))
+
 

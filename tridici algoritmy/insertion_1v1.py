@@ -15,7 +15,3 @@ def Compare():
         insertion_2_res.append(InsertionSort(copy.deepcopy(nahodny_seznam)))
     
 Compare()
-
-print(insertion_1_res)
-print(insertion_2_res)
-    
