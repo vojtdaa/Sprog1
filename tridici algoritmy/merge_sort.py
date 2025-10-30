@@ -23,7 +23,6 @@ def Merge(left, right):
         merge_steps+= 1
         new.append(right[j])
         j += 1
-    print(merge_steps)
     return new
 
 def Merge_sort(seznam):
