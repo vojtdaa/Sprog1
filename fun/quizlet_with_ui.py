@@ -1,4 +1,5 @@
 import msvcrt
+import tkinter as tk
 
 with open("nemecka_slovicka_1.txt", "r", encoding="utf-8") as f:
     upload = f.read()
@@ -90,6 +91,24 @@ def Play(slova, definice):
     return not_know_slova, not_know_definice
 
 #zacatek programu
+res_x = 900
+res_y = 500
+res = str(res_x)+"x"+str(res_y)
+okno = tk.Tk()        # 2️⃣ vytvoření hlavního okna
+okno.title("Language cards")  
+okno.geometry(res)  # šířka x výška v pixelech
+
+slovicko = tk.Label(okno, text="das Auto", font=("Arial", 24))
+slovicko.pack(pady=res_y/4.5)
+
+not_know_but = tk.Button(okno, text="Don't know", width=15, height=2, command=lambda: print("Nevim"))
+not_know_but.place(relx = 0.33, rely = 0.35)
+
+know_but = tk.Button(okno, text="Know", width=15, height=2, command=lambda: print("Vim"))
+know_but.place(relx=0.5, rely=0.35)
+
+okno.mainloop()   
+
 print("Ovladej sipkami (esc - konec)\n")
 not_know_slova, not_know_definice = Play(slova, definice)
 
