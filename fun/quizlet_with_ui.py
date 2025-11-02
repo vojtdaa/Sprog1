@@ -100,12 +100,16 @@ def Next():
 
 def LoadWord():
     global index
+    global flipped
+    flipped = False
 
     slovicko.config(text=slova[index])
     return
 
 def LoadDefinition():
     global index
+    global flipped
+    flipped = True
 
     slovicko.config(text=definice[index])
     return
@@ -115,15 +119,9 @@ def Flip():
     global flipped
     flipped = not flipped
     if flipped:
-        if not reverse:
-            LoadDefinition()
-        else:
-            LoadWord()
+        LoadDefinition()
     else:
-        if not reverse:
-            LoadWord()
-        else:
-            LoadDefinition()
+        LoadWord()
     return
 
 def Repeat():
