@@ -1,25 +1,25 @@
-acquire;získat, osvojit si*
-anticipate;očekávat, předvídat*
-assume;předpokládat*
-attempt;pokoušet se, pokusit se*
-broaden;rozšířit (obzory, znalosti)*
-clarify;objasnit, vyjasnit*
-collaborate;spolupracovat*
-commit;páchat, dopustit se (něčeho)*
-conduct;provádět, řídit (výzkum apod.)*
-convince;přesvědčit*
-define;definovat, stanovit*
-demonstrate;ukázat, předvést*
-distinguish;rozlišovat*
-estimate;odhadnout*
-expand;rozšířit (činnost, oblast)*
-highlight;zdůraznit, vyzdvihnout*
-implement;uskutečnit, zavést*
-interpret;vyložit, interpretovat*
-maintain;udržovat, zachovat*
-obtain;získat, obdržet*
-persuade;přesvědčit, přemluvit*
-rely;spoléhat se*
-require;vyžadovat, potřebovat*
-seek;hledat, usilovat o*
-tend;mít sklon, tíhnout k něčemu*
+accommodation;ubytování*
+apartment;byt (hlavně v USA)*
+attic;půda, podkroví*
+balcony;balkon*
+basement;sklep, suterén*
+bathroom;koupelna*
+bedroom;ložnice*
+ceiling;strop*
+central heating;ústřední topení*
+chimney;komín*
+cupboard;skříňka (kuchyňská)*
+detached house;samostatně stojící dům*
+furniture;nábytek*
+garage;garáž*
+garden;zahrada*
+hallway;předsíň, chodba*
+kitchen;kuchyně*
+landlord;pronajímatel*
+neighbour;soused*
+rent;najemné, pronájem*
+roof;střecha*
+shelf;police*
+terraced house;řadový dům*
+upstairs;nahoře (v patře)*
+yard;dvorek (hl. v USA)*

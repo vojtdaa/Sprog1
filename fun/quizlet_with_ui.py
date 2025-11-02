@@ -1,6 +1,7 @@
 import tkinter as tk
 import copy
 import random
+
 with open("words_given.txt", "r", encoding="utf-8") as f:
     upload = f.read()
 
@@ -267,21 +268,22 @@ okno = tk.Tk()
 okno.title("Language cards")
 okno.minsize(600, 400)  
 okno.geometry(res)
+okno.configure(bg="#FFFFFF")
 
-score_wrong = tk.Label(okno, text=f"Wrong {not_know_count}", font=("Arial", 18))
+score_wrong = tk.Label(okno, text=f"Wrong {not_know_count}", font=("Arial", 18), bg=okno["bg"])
 score_wrong.place(relx=0.05, rely=0.05)
 
-score_right = tk.Label(okno, text=f"Correct {know_count}", font=("Arial", 18))
+score_right = tk.Label(okno, text=f"Correct {know_count}", font=("Arial", 18), bg=okno["bg"])
 score_right.place(relx=0.8, rely=0.05)
 
-slovicko = tk.Label(okno, text=slova[0], font=("Arial", 28, "bold"))
+slovicko = tk.Label(okno, text=slova[0], font=("Arial", 28, "bold"), bg=okno["bg"])
 slovicko.place(relx=0.5, rely=0.4, anchor="center")
 if not reverse:
     LoadWord()
 else:
     LoadDefinition()
 
-show = tk.Label(okno, text="showing word", font=("Arial", 18))
+show = tk.Label(okno, text="showing word", font=("Arial", 18), bg=okno["bg"])
 show.place(relx=0.5, rely=0.1, anchor="center")
 
 not_know_but = tk.Button(okno, text="Don't know", font=("Arial", 16), width=12, height=2, bg="#ff0d00", fg="black", command=NotKnow)
