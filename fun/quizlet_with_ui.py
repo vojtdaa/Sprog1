@@ -1,16 +1,19 @@
-import msvcrt
 import tkinter as tk
+import copy
 
 with open("nemecka_slovicka_1.txt", "r", encoding="utf-8") as f:
     upload = f.read()
 
-slova = []
-definice = []
+puvodni_slova = []
+puvodni_definice = []
 
 not_know_slova = []
 not_know_definice = []
 know_count = 0
 not_know_count = 0
+index = 1
+flipped = False
+ended = False
 
 
 def SplitWords(slova, definice):
@@ -31,136 +34,166 @@ def SplitWords(slova, definice):
             pocket += i
     return slova, definice
 
-slova, definice = SplitWords(slova, definice)
+puvodni_slova, puvodni_definice = SplitWords(puvodni_slova, puvodni_definice)
+slova = copy.deepcopy(puvodni_slova)
+definice = copy.deepcopy(puvodni_definice)
 ted_slov = len(slova)
 
-def GetKey():
-    while True:
-        key = msvcrt.getch()
-        vysledek = ""
-        
-        if key == b"\x1b":
-            vysledek = "esc"
-            return vysledek
-    
-        if key == b"\xe0":
-            key2 = msvcrt.getch()
-            if key2 == b"H" or key2 == b"P":
-                vysledek = "flip"
-                return vysledek
-            elif key2 == b"M":
-                vysledek = "know"
-                return vysledek
-            elif key2 == b"K":
-                vysledek = "not know"
-                return vysledek
+#zacatek programu
 
-def Play(slova, definice):
+def Know():
+    global index
     global know_count
     global not_know_count
-    know_count = 0
-    not_know_count = 0
+    know_count+=1
 
+    if index == len(slova):
+        if not_know_count == 0:
+            End()
+            score_right.config(text = f"Correct {know_count}")
+            know_but.config(state="disabled")
+            not_know_but.config(state="disabled")
+            return
+        else:
+            repeat_but.place(relx=0.5, rely=0.7, anchor="center")
+            score_right.config(text = f"Correct {know_count}")
+            know_but.config(state="disabled")
+            not_know_but.config(state="disabled")
+            return
+    LoadWord()
+    score_right.config(text = f"Correct {know_count}")
+   
+    return
+
+def NotKnow():
+    global index
+    global not_know_count
+   
+    not_know_slova.append(slova[index-1])
+    not_know_definice.append(definice[index-1])
+    not_know_count += 1
+
+    score_wrong.config(text = f"Wrong {not_know_count}")
+
+    if index == len(slova):
+        not_know_but.config(state="disabled")
+        know_but.config(state="disabled")
+        repeat_but.place(relx=0.5, rely=0.7, anchor="center")
+        return
+    LoadWord()
+    return
+
+def LoadWord():
+    global index
+    global flipped
+    flipped = False
+
+    slovicko.config(text=slova[index])
+    index += 1
+    return
+
+def Flip():
+    global index
+    global flipped
+    flipped = not flipped
+    if not ended:
+        if flipped:
+            slovicko.config(text=definice[index-1])
+        else:
+            slovicko.config(text=slova[index-1])
+    return
+
+def Repeat():
+    global slova
+    global definice
+    global not_know_slova
+    global not_know_definice
+    global index
+    global know_count
+    global not_know_count
+
+    slova = not_know_slova
+    definice = not_know_definice
     not_know_slova = []
     not_know_definice = []
+    index = 0
+    know_count = 0
+    not_know_count = 0
+    LoadWord()
+    repeat_but.place_forget()
+    not_know_but.config(state="normal")
+    know_but.config(state="normal")
+    score_right.config(text = f"Correct {know_count}")
+    score_wrong.config(text = f"Wrong {not_know_count}")
+    return
 
-    for i in range(len(slova)):
-        slovo = True
-        while True:
-            if slovo:
-                print("\033[F\033[K", end="")
-                print(slova[i])
-            else:
-                print("\033[F\033[K", end="")
-                print(definice[i])
-            
-            a = GetKey()
-            if a == "flip":
-                slovo = not slovo
-            elif a == "know":
-                know_count += 1
-                break
-            elif a == "not know":
-                not_know_slova.append(slova[i])
-                not_know_definice.append(definice[i])
-                not_know_count += 1
-                break
-            elif a == "esc":
-                return not_know_slova, not_know_definice
-    
-    return not_know_slova, not_know_definice
+def End():
+    global ended
+    ended = True
+    repeat_but.place_forget()
+    flip_but.config(state="disabled")
+    slovicko.config(text="You know everything :)")
+    restart_but.place(relx=0.1, rely=0.9, anchor="center")
 
-#zacatek programu
+def Restart():
+    global slova
+    global definice
+    global not_know_slova
+    global not_know_definice
+    global index
+    global know_count
+    global not_know_count
+    global puvodni_slova
+    global puvodni_definice
+
+    slova = copy.deepcopy(puvodni_slova)
+    definice = copy.deepcopy(puvodni_definice)
+    not_know_slova = []
+    not_know_definice = []
+    index = 0
+    know_count = 0
+    not_know_count = 0
+    LoadWord()
+
+    restart_but.place_forget()
+    repeat_but.place_forget()
+    not_know_but.config(state="normal")
+    know_but.config(state="normal")
+    score_right.config(text = f"Correct {know_count}")
+    score_wrong.config(text = f"Wrong {not_know_count}")
+
+
 res_x = 900
 res_y = 500
 res = str(res_x)+"x"+str(res_y)
 okno = tk.Tk()        # 2️⃣ vytvoření hlavního okna
-okno.title("Language cards")  
+okno.title("Language cards")
+okno.minsize(600, 400)  
 okno.geometry(res)  # šířka x výška v pixelech
 
-slovicko = tk.Label(okno, text="das Auto", font=("Arial", 24))
-slovicko.pack(pady=res_y/4.5)
+score_wrong = tk.Label(okno, text=f"Wrong {not_know_count}", font=("Arial", 18))
+score_wrong.place(relx=0.05, rely=0.05)
 
-not_know_but = tk.Button(okno, text="Don't know", width=15, height=2, command=lambda: print("Nevim"))
-not_know_but.place(relx = 0.33, rely = 0.35)
+score_right = tk.Label(okno, text=f"Correct {know_count}", font=("Arial", 18))
+score_right.place(relx=0.8, rely=0.05)
 
-know_but = tk.Button(okno, text="Know", width=15, height=2, command=lambda: print("Vim"))
-know_but.place(relx=0.5, rely=0.35)
+slovicko = tk.Label(okno, text=slova[0], font=("Arial", 28, "bold"))
+slovicko.place(relx=0.5, rely=0.4, anchor="center")
+
+not_know_but = tk.Button(okno, text="Don't know", font=("Arial", 16), width=12, height=2, bg="#ff0d00", fg="black", command=NotKnow)
+not_know_but.place(relx=0.25, rely=0.7, anchor="center")
+
+know_but = tk.Button(okno, text="Know", font=("Arial", 16), width=12, height=2, bg="#00ff00", fg="black", command=Know)
+know_but.place(relx=0.75, rely=0.7, anchor="center")
+
+flip_but = tk.Button(okno, text="Flip", font=("Arial", 16), width=12, height=2, bg="#37b6ff", fg="black", command=Flip)
+flip_but.place(relx=0.5, rely=0.7, anchor="center")
+
+restart_but = tk.Button(okno, text="restart", font=("Arial", 10), width=6, height=1, bg="#000000", fg="white", command=Restart)
+
+repeat_but = tk.Button(okno, text="Repeat", font=("Arial", 16), width=12, height=2, bg="#37b6ff", fg="black", command=Repeat)
 
 okno.mainloop()   
-
-print("Ovladej sipkami (esc - konec)\n")
-not_know_slova, not_know_definice = Play(slova, definice)
-
-print("\nVysledek:")
-
-not_know_percent = round(not_know_count/ted_slov*100, 2)
-know_percent = round(know_count/ted_slov*100, 2)
-ted_slov = not_know_count
-
-if know_percent > 0:
-    print(f"Znas \033[32m{know_percent}%\033[0m slov.")
-if not_know_percent > 0:
-    print(f"Neznas \033[31m{not_know_percent}%\033[0m slov.")
-
-if know_percent == 100:
-    print("\n\033[33mZnas vsechny\033[0m")
-else:
-    while True:
-        if not_know_percent == 0:
-            print("\n\033[33mZnas vsechny\033[0m")
-            break
-
-        print("\nPokracovat v uceni?")
-
-        continue_playing = GetKey()
-
-        if continue_playing != "esc" and not_know_percent>0:
-            ted_slov = len(not_know_slova)
-            if ted_slov == 0:
-                print("\n\033[33mZnas vsechny\033[0m")
-                break
-            not_know_slova, not_know_definice = Play(not_know_slova, not_know_definice)
-            
-
-
-            print("\nVysledek:")
-
-            not_know_percent = round((len(not_know_slova)/ted_slov)*100, 2)
-            know_percent = round(100-not_know_percent, 2)
-            if know_percent > 0:
-                print(f"Znas \033[32m{know_percent}%\033[0m slov.")
-            if not_know_percent > 0:
-                print(f"Neznas \033[31m{not_know_percent}%\033[0m slov.")
-
-        else: break
-
-
-
-
-
-
-
 
 '''
 print("\033[31mToto je červený text\033[0m") #\033[31m\033[0m

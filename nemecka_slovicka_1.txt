@@ -10,7 +10,7 @@ wohl;asi*
 Es war wohl so...;Bylo to asi tak...*
 der Anfänger, -;začátečník*
 die Uni, -s (=Universität);univerzita*
-das Wohnheim, -e;kolej, ubytovna, internát*
+das Wohnheim, -e;kolej, ubytovna, internát*$
 weder... noch;ani... ani*
 das Smartphone, -s;smartphone, chytrý telefon*
 zufällig;náhodou, náhodně*
