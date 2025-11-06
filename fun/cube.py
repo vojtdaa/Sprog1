@@ -92,28 +92,28 @@ def CubeRotY():
     #bod 1: x = s(x)/scale+cos(alfa+(1+2*i)*pi/4)*r
     #bod 1: y = s(y)/scale+sin(alfa+(1+2*i)*pi/4)*r
     points_x[0] = mid_point[0]/scale + math.cos(beta + 7 * math.pi / 4) * radius
-    #points_y[0] = mid_point[1]/scale + 0.5
+    points_y[0] = mid_point[1]/scale + 0.5
 
     points_x[1] = mid_point[0]/scale + math.cos(beta + 5 * math.pi / 4) * radius
-    #points_y[1] = mid_point[1]/scale + 0.5
+    points_y[1] = mid_point[1]/scale + 0.5
 
     points_x[2] = mid_point[0]/scale + math.cos(beta + 5 * math.pi / 4) * radius
-    #points_y[2] = mid_point[1]/scale - 0.5
+    points_y[2] = mid_point[1]/scale - 0.5
 
     points_x[3] = mid_point[0]/scale + math.cos(beta + 7 * math.pi / 4) * radius
-    #points_y[3] = mid_point[1]/scale - 0.5
+    points_y[3] = mid_point[1]/scale - 0.5
 
     points_xz[0] = mid_point[0]/scale + math.cos(beta + 1 * (math.pi / 4)) * radius
-    #points_yz[0] = mid_point[1]/scale + 0.5
+    points_yz[0] = mid_point[1]/scale + 0.5
 
     points_xz[1] = mid_point[0]/scale + math.cos(beta + 3 * (math.pi / 4)) * radius
-    #points_yz[1] = mid_point[1]/scale + 0.5
+    points_yz[1] = mid_point[1]/scale + 0.5
 
     points_xz[2] = mid_point[0]/scale + math.cos(beta + 3 * (math.pi / 4)) * radius
-    #points_yz[2] = mid_point[1]/scale - 0.5
+    points_yz[2] = mid_point[1]/scale - 0.5
 
     points_xz[3] = mid_point[0]/scale + math.cos(beta + 1 * (math.pi / 4)) * radius
-    #points_yz[3] = mid_point[1]/scale - 0.5
+    points_yz[3] = mid_point[1]/scale - 0.5
     print(points_xz, points_yz)
 
     for i in range(0, -len(points_xz), -1):
@@ -132,12 +132,11 @@ def CubeRotY():
     #alfa += math.pi/60
 
     iteration+=1
-    canvas.after(100, CubeRotX)
-    '''if iteration == 100:
+    if iteration == 100:
         iteration = 0
         canvas.after(20, CubeRotZ)
     else:
-        canvas.after(20, CubeRotY)'''
+        canvas.after(20, CubeRotY)
 
 def CubeRotZ():
     global iteration
@@ -218,28 +217,28 @@ def CubeRotX():
 
     #bod 1: x = s(x)/scale+cos(alfa+(1+2*i)*pi/4)*r
     #bod 1: y = s(y)/scale+sin(alfa+(1+2*i)*pi/4)*r
-    #points_x[0] = mid_point[0]/scale + 0.5
+    points_x[0] = mid_point[0]/scale + 0.5
     points_y[0] = mid_point[1]/scale - math.sin(alfa + 1 * math.pi / 4) * radius
 
-    #points_x[1] = mid_point[0]/scale - 0.5
+    points_x[1] = mid_point[0]/scale - 0.5
     points_y[1] = mid_point[1]/scale - math.sin(alfa + 1 * math.pi / 4) * radius
 
-    #points_x[2] = mid_point[0]/scale - 0.5
+    points_x[2] = mid_point[0]/scale - 0.5
     points_y[2] = mid_point[1]/scale - math.sin(alfa + 7 * math.pi / 4) * radius
 
-    #points_x[3] = mid_point[0]/scale + 0.5
+    points_x[3] = mid_point[0]/scale + 0.5
     points_y[3] = mid_point[1]/scale - math.sin(alfa + 7 * math.pi / 4) * radius
 
-    #points_xz[0] = mid_point[0]/scale + 0.5
+    points_xz[0] = mid_point[0]/scale + 0.5
     points_yz[0] = mid_point[1]/scale - math.sin(alfa + 3 * math.pi / 4) * radius
 
-    #points_xz[1] = mid_point[0]/scale - 0.5
+    points_xz[1] = mid_point[0]/scale - 0.5
     points_yz[1] = mid_point[1]/scale - math.sin(alfa + 3 * math.pi / 4) * radius
 
-    #points_xz[2] = mid_point[0]/scale - 0.5
+    points_xz[2] = mid_point[0]/scale - 0.5
     points_yz[2] = mid_point[1]/scale - math.sin(alfa + 5 * math.pi / 4) * radius
 
-    #points_xz[3] = mid_point[0]/scale + 0.5
+    points_xz[3] = mid_point[0]/scale + 0.5
     points_yz[3] = mid_point[1]/scale - math.sin(alfa + 5 * math.pi / 4) * radius
     print(points_xz, points_yz)
 
@@ -259,12 +258,11 @@ def CubeRotX():
     canvas.create_rectangle(mid_point[0]-5, mid_point[1]-5, mid_point[0]+5, mid_point[1]+5, fill="red", outline="")
 
     iteration+=1
-    canvas.after(100, CubeRotY)
-    '''if iteration == 100:
+    if iteration == 100:
         iteration = 0
         canvas.after(20, CubeRotY)
     else:
-        canvas.after(20, CubeRotX)'''
+        canvas.after(20, CubeRotX)
 
     
 
@@ -333,6 +331,5 @@ def Move():
         DrawSquare()
         canvas.after(ms, Move)
 
-DrawByCircle()
 CubeRotX()
 root.mainloop()

@@ -53,6 +53,11 @@ def DrawPoints():
     points[1][1] = s[1] - (math.sin(beta)*math.cos(math.atan2((sq_root*(math.sin(3*pi_4)*math.cos(alfa) + math.cos(3*pi_4)*math.sin(alfa))), 1)) + math.cos(beta) * math.sin(math.atan2((sq_root*(math.sin(3*pi_4)*math.cos(alfa) + math.cos(3*pi_4)*math.sin(alfa))), 1)))
     points[2][1] = s[1] - (math.sin(beta)*math.cos(math.atan2((sq_root*(math.sin(5*pi_4)*math.cos(alfa) + math.cos(5*pi_4)*math.sin(alfa))), 1)) + math.cos(beta) * math.sin(math.atan2((sq_root*(math.sin(5*pi_4)*math.cos(alfa) + math.cos(5*pi_4)*math.sin(alfa))), 1)))
     points[3][1] = s[1] - (math.sin(beta)*math.cos(math.atan2((sq_root*(math.sin(7*pi_4)*math.cos(alfa) + math.cos(7*pi_4)*math.sin(alfa))), 1)) + math.cos(beta) * math.sin(math.atan2((sq_root*(math.sin(7*pi_4)*math.cos(alfa) + math.cos(7*pi_4)*math.sin(alfa))), 1)))
+
+    points[4][1] = s[1] - (math.sin(beta)*math.cos(math.atan2((sq_root*(math.sin(1*pi_4)*math.cos(alfa) + math.cos(1*pi_4)*math.sin(alfa))), 4)) + math.cos(beta) * math.sin(math.atan2((sq_root*(math.sin(1*pi_4)*math.cos(alfa) + math.cos(1*pi_4)*math.sin(alfa))), 4)))
+    points[5][1] = s[1] - (math.sin(beta)*math.cos(math.atan2((sq_root*(math.sin(3*pi_4)*math.cos(alfa) + math.cos(3*pi_4)*math.sin(alfa))), 4)) + math.cos(beta) * math.sin(math.atan2((sq_root*(math.sin(3*pi_4)*math.cos(alfa) + math.cos(1*pi_4)*math.sin(alfa))), 4)))
+    points[6][1] = s[1] - (math.sin(beta)*math.cos(math.atan2((sq_root*(math.sin(5*pi_4)*math.cos(alfa) + math.cos(5*pi_4)*math.sin(alfa))), 4)) + math.cos(beta) * math.sin(math.atan2((sq_root*(math.sin(5*pi_4)*math.cos(alfa) + math.cos(1*pi_4)*math.sin(alfa))), 4)))
+    points[7][1] = s[1] - (math.sin(beta)*math.cos(math.atan2((sq_root*(math.sin(7*pi_4)*math.cos(alfa) + math.cos(7*pi_4)*math.sin(alfa))), 4)) + math.cos(beta) * math.sin(math.atan2((sq_root*(math.sin(7*pi_4)*math.cos(alfa) + math.cos(1*pi_4)*math.sin(alfa))), 4)))
     
     '''points[0][1] = s[1] - (math.sin(beta)*math.cos(math.atan2(math.sin(pi_4+alfa)*sq_root, 1) + math.cos(beta) * math.sin(math.atan2(math.sin(pi_4+alfa)*sq_root, 1))))
     points[1][1] = s[1] - (math.sin(beta)*math.cos(math.atan2((math.sin(3*pi_4)*math.cos(alfa) + math.cos(3*pi_4)*math.sin(alfa))*sq_root, 1) + math.cos(beta) * math.sin(math.atan2((math.sin(3*pi_4)*math.cos(alfa) + math.cos(3*pi_4)*math.sin(alfa))*sq_root, 1))))
