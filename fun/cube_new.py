@@ -72,7 +72,7 @@ def DrawPoints():
         x2, y2 = points[n][0], points[n][1]
 
         lines.append(canvas.create_line(x1*scale+posun, y1*scale+posun, x2*scale+posun, y2*scale+posun))
-    beta += math.pi/20
+    beta += math.pi/60
     alfa += math.pi/60
     if alfa > 8*pi_4:
         alfa -= 8*pi_4
