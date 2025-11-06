@@ -34,5 +34,3 @@ def Merge_sort(seznam):
 
     
     return Merge(left, right)
-
-print(Merge_sort(seznam))
