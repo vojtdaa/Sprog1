@@ -17,7 +17,7 @@ flipped = False
 ended = False
 reverse = False
 
-def SplitWords(slova, definice):
+def SplitWords(upload, slova=[], definice=[]):
     pocket = ""
     for i in upload:
         if i == ";":
@@ -35,7 +35,7 @@ def SplitWords(slova, definice):
             pocket += i
     return slova, definice
 
-puvodni_slova, puvodni_definice = SplitWords(puvodni_slova, puvodni_definice)
+puvodni_slova, puvodni_definice = SplitWords(upload)
 slova = copy.deepcopy(puvodni_slova)
 definice = copy.deepcopy(puvodni_definice)
 ted_slov = len(slova)
@@ -260,6 +260,21 @@ def Shuffle():
         LoadWord()
     return
 
+def ShowMenu():
+    menu_frame.tkraise()
+    return
+
+def Start():
+
+    for frame in all_frames:
+        frame.place(relwidth=1, relheight=1)
+
+    game_frame.tkraise()
+    if not reverse:
+        LoadWord()
+    else:
+        LoadDefinition()
+    return
 
 res_x = 900
 res_y = 500
@@ -270,40 +285,116 @@ okno.minsize(600, 400)
 okno.geometry(res)
 okno.configure(bg="#FFFFFF")
 
-score_wrong = tk.Label(okno, text=f"Wrong {not_know_count}", font=("Arial", 18), bg=okno["bg"])
+all_frames = []
+
+menu_frame = tk.Frame(okno, bg="White")
+game_frame = tk.Frame(okno, bg="White")
+
+all_frames.append(menu_frame)
+all_frames.append(game_frame)
+
+score_wrong = tk.Label(game_frame, text=f"Wrong {not_know_count}", font=("Arial", 18), bg=okno["bg"])
 score_wrong.place(relx=0.05, rely=0.05)
 
-score_right = tk.Label(okno, text=f"Correct {know_count}", font=("Arial", 18), bg=okno["bg"])
+score_right = tk.Label(game_frame, text=f"Correct {know_count}", font=("Arial", 18), bg=okno["bg"])
 score_right.place(relx=0.8, rely=0.05)
 
-slovicko = tk.Label(okno, text=slova[0], font=("Arial", 28, "bold"), bg=okno["bg"])
+slovicko = tk.Label(game_frame, text=slova[0], font=("Arial", 28, "bold"), bg=okno["bg"])
 slovicko.place(relx=0.5, rely=0.4, anchor="center")
-if not reverse:
-    LoadWord()
-else:
-    LoadDefinition()
 
-show = tk.Label(okno, text="showing word", font=("Arial", 18), bg=okno["bg"])
+show = tk.Label(game_frame, text="showing word", font=("Arial", 18), bg=okno["bg"])
 show.place(relx=0.5, rely=0.1, anchor="center")
 
-not_know_but = tk.Button(okno, text="Don't know", font=("Arial", 16), width=12, height=2, bg="#ff0d00", fg="black", command=NotKnow)
+not_know_but = tk.Button(game_frame, text="Don't know", font=("Arial", 16), width=12, height=2, bg="#ff0d00", fg="black", command=NotKnow)
 not_know_but.place(relx=0.25, rely=0.7, anchor="center")
 
-know_but = tk.Button(okno, text="Know", font=("Arial", 16), width=12, height=2, bg="#00ff00", fg="black", command=Know)
+know_but = tk.Button(game_frame, text="Know", font=("Arial", 16), width=12, height=2, bg="#00ff00", fg="black", command=Know)
 know_but.place(relx=0.75, rely=0.7, anchor="center")
 
-flip_but = tk.Button(okno, text="Flip", font=("Arial", 16), width=12, height=2, bg="#37b6ff", fg="black", command=Flip)
+flip_but = tk.Button(game_frame, text="Flip", font=("Arial", 16), width=12, height=2, bg="#37b6ff", fg="black", command=Flip)
 flip_but.place(relx=0.5, rely=0.7, anchor="center")
 
-restart_but = tk.Button(okno, text="restart", font=("Arial", 10), width=6, height=1, bg="#000000", fg="white", command=Restart)
+restart_but = tk.Button(game_frame, text="restart", font=("Arial", 10), width=6, height=1, bg="#000000", fg="white", command=Restart)
 restart_but.place(relx=0.2, rely=0.9, anchor="center")
 
-reverse_but = tk.Button(okno, text="reverse", font=("Arial", 10), width=6, height=1, bg="#000000", fg="white", command=Reverse)
+reverse_but = tk.Button(game_frame, text="reverse", font=("Arial", 10), width=6, height=1, bg="#000000", fg="white", command=Reverse)
 reverse_but.place(relx=0.8, rely=0.9, anchor="center")
 
-shuffle_but = tk.Button(okno, text="shuffle", font=("Arial", 10), width=6, height=1, bg="#000000", fg="white", command=Shuffle)
+shuffle_but = tk.Button(game_frame, text="shuffle", font=("Arial", 10), width=6, height=1, bg="#000000", fg="white", command=Shuffle)
 shuffle_but.place(relx=0.7, rely=0.9, anchor="center")
 
-repeat_but = tk.Button(okno, text="Repeat", font=("Arial", 16), width=12, height=2, bg="#37b6ff", fg="black", command=Repeat)
+repeat_but = tk.Button(game_frame, text="Repeat", font=("Arial", 16), width=12, height=2, bg="#37b6ff", fg="black", command=Repeat)
 
+back = tk.Button(game_frame, text="back", font=("Arial", 10), width=6, height=1, bg="#000000", fg="white", command=ShowMenu)
+back.place(relx=0.9, rely=0.9, anchor="center")
+
+#--------------------------------------------------------------------------------------------------------------------------------------
+set_name = tk.Label(menu_frame, text="Set name", font=("Arial", 16, "bold"), bg="white")
+nadpis = tk.Label(menu_frame, text="Flashcards", font=("Arial", 16, "bold"), bg="white")
+flashcards_box = tk.Text(menu_frame, height=5, width=30)
+set_name_box = tk.Text(menu_frame, height=1, width=30)
+
+set_name.pack()
+set_name_box.pack()
+nadpis.pack()
+flashcards_box.pack(pady=20)
+
+pocet_setu = 0
+sets_buts = []
+text_input_str = ""
+
+def LoadFlashcard():
+    global puvodni_slova
+    global puvodni_definice
+    if text_input_str != "":
+        puvodni_slova, puvodni_definice = SplitWords(text_input_str, [], [])
+    Restart()
+    return
+
+def CreateSet():
+    global pocet_setu
+    global text_input_str
+
+    text_input_str = flashcards_box.get("1.0", tk.END)
+    name = set_name_box.get("1.0", tk.END)
+
+    if flashcards_box.get("1.0", "end-1c") == "" or pocet_setu == 16:
+        print("Study set won't be created!")
+        return
+    
+    pocet_setu += 1
+
+    if set_name_box.get("1.0", "end-1c") == "":
+        name = f"Set {pocet_setu}"
+    button = tk.Button(menu_frame, text=name[:15], command=LoadFlashcard)
+
+    if pocet_setu <= 8:
+        y_pos = (pocet_setu-1)*0.1+0.05
+        x_pos = 0.05
+    else:
+        y_pos = (pocet_setu-9)*0.1+0.05
+        x_pos = 0.05 + 0.15
+
+    button.place(relx = x_pos, rely = y_pos, anchor="nw", width=100, height=40)
+    sets_buts.append((button))
+
+    flashcards_box.delete("1.0", tk.END)
+    set_name_box.delete("1.0", tk.END)
+
+
+def DeleteSets():
+    global pocet_setu
+    pocet_setu = 0
+    for but in sets_buts:
+        but.destroy()
+
+def Play():
+    game_frame.tkraise()
+
+button = tk.Button(menu_frame, text="Make study set", command=CreateSet)
+button2 = tk.Button(menu_frame, text="play", font=("Arial", 10), width=6, height=1, bg="#000000", fg="white", command=Play)
+button.pack()
+button2.place(relx = 0.9, rely=0.9, anchor="center")
+
+Start()
 okno.mainloop()

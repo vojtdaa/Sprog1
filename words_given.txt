@@ -8,7 +8,7 @@ bedroom;ložnice*
 ceiling;strop*
 central heating;ústřední topení*
 chimney;komín*
-cupboard;skříňka (kuchyňská)*
+cupboard;skříňka (kuchyňská)*$
 detached house;samostatně stojící dům*
 furniture;nábytek*
 garage;garáž*
