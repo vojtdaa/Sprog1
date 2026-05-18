@@ -1,6 +1,8 @@
 seznam = [7, 7, 7, 7, 7, 7, 1, 1, 5, 5, 5, 5, 5, 5, 7, 7, 7]
 
 def rle(n):
+    if not n:
+        return []
     prew = n[0]
     pocet = 1
     vysledek = []
@@ -21,4 +23,6 @@ def rle(n):
 
         
 
-print(rle(seznam))
+print(rle([1, 1, 1, 2, 2, 3]))   # → [[1, 3], [2, 2], [3, 1]]
+print(rle([1, 1, 2, 1, 1]))       # → [[1, 2], [2, 1], [1, 2]]
+print(rle([]))                    # → []
